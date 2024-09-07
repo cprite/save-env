@@ -11,15 +11,19 @@ import time
 from data.cookies import GITHUB_COOKIES
 from data.openai_key_names import OPENAI_KEY_NAMES
 
+from check import check_key
+from storage import add_key, get_keys
+
 
 
 """
 
-SCRAP OPENAI KEYS FROM GITHUB'S .ENV FILES
+START SCANNING OPENAI KEYS FROM GITHUB'S .ENV FILES
 
 """
 
-def scrap_keys():
+
+def start_scan():
 
     # Set up Chrome options for headless mode
     chrome_options = Options()
@@ -32,9 +36,10 @@ def scrap_keys():
     # Initialize the WebDriver
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
-    all_keys = []
-    checked_count = 0
+    found_count = 0
+    comp_count = 0
     first_refresh = False
+    all_keys = get_keys()
 
     for api_name in OPENAI_KEY_NAMES:
 
@@ -55,6 +60,7 @@ def scrap_keys():
             first_refresh = True
 
         # Loop through the existed pages
+        # p.s. range of 2-100 is hypothetical, usually there are up to 5 pages
         for page in range(2, 100):
 
             page_source = driver.page_source
@@ -90,21 +96,27 @@ def scrap_keys():
                         if line.find("mark"):
                             key = line.text.split('=')[1].strip().replace("'", "").replace('"', '').replace("<", "").replace(">", "")
 
-                            if key and (len(key) == 51 or len(key) == 132) and key.startswith("sk-"):
+                            # Check if the key structure is valid
+                            if key and (len(key) == 51 or len(key) == 132) and key.startswith("sk-") and key not in all_keys:
 
-                                keys.append(key)
-                                checked_count += 1
+                                add_key(key)
+                                all_keys.add(key)
 
-                # Append the keys to the overall list of scraped keys
-                if keys:
+                                found_count += 1
 
-                    all_keys.append(keys)
+                                # Check if the key is valid by sending a request to the OpenAI API
+                                if check_key(key):
+                                    # send issue to the repository
+                                    #
+                                    comp_count += 1
+                                    #
+                                    pass
 
-                    logging.info(f"Found: {keys}")
 
             else:
                 # Break the loop if page is empty (no .env files found)
                 break
+
 
             # Click button to go to the next page if exists
             try:
@@ -116,4 +128,4 @@ def scrap_keys():
                 # Break the loop if no more pages
                 break
 
-    return all_keys, checked_count
+    return found_count, comp_count
