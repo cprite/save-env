@@ -8,7 +8,8 @@ import os
 
 import app.keyboards as kb
 
-from app.crawler.scraper import scrap_keys
+from app.crawler.scraper import start_scan
+from app.crawler.check import check_keys
 
 
 router = Router()
@@ -32,12 +33,12 @@ async def start(message: Message):
 
             while loop:
 
-                keys = await scrap_keys()
+                found, compromised = await start_scan()
 
                 try:
-                    await message.edit_text("Общие результаты с начала работы:\n\nПроверенно ключей: {checked}\nКомпроментировано ключей: {compromised}")
+                    await message.edit_text(f"Общие результаты с начала работы:\n\nПроверенно ключей: {found}\nКомпроментировано ключей: {compromised}")
                 except:
-                    await message.answer("Общие результаты с начала работы:\n\nПроверенно ключей: {checked}\nКомпроментировано ключей: {compromised}")
+                    await message.answer(f"Общие результаты с начала работы:\n\nПроверенно ключей: {found}\nКомпроментировано ключей: {compromised}")
 
                 asyncio.sleep(3600)
 
@@ -49,9 +50,10 @@ async def start_callback(callback: CallbackQuery):
 
     while loop:
 
-        keys = await scrap_keys()
+        found, compromised = await start_scan()
 
-        await callback.message.edit_text("Общие результаты с начала работы:\n\nПроверенно ключей: {checked}\nКомпроментировано ключей: {compromised}", reply_markup=await kb.stop())
+        await callback.message.edit_text(f"""
+                    Результаты с начала работы:\n\nПроверенно ключей: {found}\nКомпроментировано ключей: {compromised}""", reply_markup=await kb.stop())
 
         asyncio.sleep(3600)
 
