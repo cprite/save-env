@@ -1,5 +1,7 @@
 # Other files
 notebooks/*
+app/crawler/data/cookies.py
+app/crawler/data/keys.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
