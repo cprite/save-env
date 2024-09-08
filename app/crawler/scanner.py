@@ -7,12 +7,15 @@ from bs4 import BeautifulSoup
 
 import logging
 import time
+import datetime
 
-from data.cookies import GITHUB_COOKIES
-from data.openai_key_names import OPENAI_KEY_NAMES
+from app.crawler.data.cookies import GITHUB_COOKIES
+from app.crawler.data.openai_key_names import OPENAI_KEY_NAMES
 
-from check import check_key
-from storage import add_key, get_keys
+from app.crawler.check import check_key
+from app.crawler.storage import add_key, get_keys
+from app.crawler.warning import send_warning
+from app.crawler.statistics import update_stat, get_stat
 
 
 
@@ -27,7 +30,7 @@ def start_scan():
 
     # Set up Chrome options for headless mode
     chrome_options = Options()
-    #chrome_options.add_argument("--headless")  # Run Chrome in headless mode
+    chrome_options.add_argument("--headless")  # Run Chrome in headless mode
     chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration (helps with some issues)
     chrome_options.add_argument("--window-size=1920x1080")  # Set window size (optional)
     chrome_options.add_argument("--no-sandbox")  # Bypass OS security model (useful in Docker)
@@ -36,10 +39,15 @@ def start_scan():
     # Initialize the WebDriver
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
-    found_count = 0
-    comp_count = 0
     first_refresh = False
+
     all_keys = get_keys()
+
+    stat = get_stat()
+
+    total_found, total_comp = int(stat[1]), int(stat[3])
+    last_found = 0
+    last_comp = 0
 
     for api_name in OPENAI_KEY_NAMES:
 
@@ -85,10 +93,12 @@ def start_scan():
 
             if envs:
 
-                keys = []
+                env_num = 0
 
                 # Loop through the .env files
                 for env in envs:
+
+                    env_num += 1
 
                     lines = env.find_all('tr')
 
@@ -101,14 +111,17 @@ def start_scan():
 
                                 add_key(key)
                                 all_keys.add(key)
+                                logging.info(f"Key found: {key}")
 
-                                found_count += 1
+                                last_found += 1
 
                                 # Check if the key is valid by sending a request to the OpenAI API
                                 if check_key(key):
-                                    # send issue to the repository
-                                    #
-                                    comp_count += 1
+
+                                    # Send a warning to the user repo as an issue if the key is compromised
+                                    send_warning(driver, env_num)
+
+                                    last_comp += 1
                                     #
                                     pass
 
@@ -128,4 +141,10 @@ def start_scan():
                 # Break the loop if no more pages
                 break
 
-    return found_count, comp_count
+    # Update the statistics
+    total_found += last_found
+    total_comp += last_comp
+
+    scan_time = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+
+    update_stat(scan_time, total_found, last_found, total_comp, last_comp)

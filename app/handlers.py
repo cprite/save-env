@@ -4,16 +4,15 @@ from aiogram.types import Message, CallbackQuery
 from aiogram import Bot
 
 import asyncio
-import os
+import datetime
 
 import app.keyboards as kb
 
-from app.crawler.scraper import start_scan
-from app.crawler.check import check_keys
+from app.crawler.scanner import start_scan
+from app.crawler.statistics import get_stat
 
 
 router = Router()
-bot = Bot(token=os.getenv('TELEGRAM_TOKEN'))
 
 global loop
 loop = False
@@ -21,47 +20,43 @@ loop = False
 
 @router.message(CommandStart())
 async def start(message: Message):
-    global loop
-    loop = False
 
     if message.from_user.id == 1132338630:
 
-        await message.answer("Меню", reply_markup=await kb.start())
+        await message.answer("Menu", reply_markup=await kb.start())
 
     else:
-        if loop:
 
-            while loop:
+        scan_time, total_found, last_found, total_compromised, last_compromised = get_stat()
 
-                found, compromised = await start_scan()
+        try:
+            await message.edit_text(f"Scan results:\n\n- <b>Total keys checked:</b> {total_found}\n- <b>New keys checked:</b> {last_found}\n\n- <b>Total compromised keys:</b> {total_compromised}\n- <b>New compromised keys:</b> {last_compromised}\n\n<i>Last scan: {scan_time}</i>", parse_mode="HTML")
+        except:
+            await message.answer(f"Scan results:\n\n- <b>Total keys checked:</b> {total_found}\n- <b>New keys checked:</b> {last_found}\n\n- <b>Total compromised keys:</b> {total_compromised}\n- <b>New compromised keys:</b> {last_compromised}\n\n<i>Last scan: {scan_time}</i>", parse_mode="HTML")
 
-                try:
-                    await message.edit_text(f"Общие результаты с начала работы:\n\nПроверенно ключей: {found}\nКомпроментировано ключей: {compromised}")
-                except:
-                    await message.answer(f"Общие результаты с начала работы:\n\nПроверенно ключей: {found}\nКомпроментировано ключей: {compromised}")
-
-                asyncio.sleep(3600)
+        await asyncio.sleep(60)
 
 
-@router.callback_query('start')
+@router.callback_query(F.data == "start")
 async def start_callback(callback: CallbackQuery):
     global loop
     loop = True
 
     while loop:
 
-        found, compromised = await start_scan()
+        start_scan()
 
-        await callback.message.edit_text(f"""
-                    Результаты с начала работы:\n\nПроверенно ключей: {found}\nКомпроментировано ключей: {compromised}""", reply_markup=await kb.stop())
+        scan_time, total_found, last_found, total_compromised, last_compromised = get_stat()
 
-        asyncio.sleep(3600)
+        await callback.message.answer(f"Scan results:\n\n- <b>Total keys checked:</b> {total_found}\n- <b>New keys checked:</b> {last_found}\n\n- <b>Total compromised keys:</b> {total_compromised}\n- <b>New compromised keys:</b> {last_compromised}\n\n<i>Last scan: {scan_time}</i>", reply_markup=await kb.stop(), parse_mode="HTML")
+
+        await asyncio.sleep(3600)
 
 
-@router.callback_query('stop')
+@router.callback_query(F.data == "stop")
 async def stop_callback(callback: CallbackQuery):
     global loop
     loop = False
 
     await callback.message.edit_text("Работа остановлена")
-    await callback.message.answer("Меню", reply_markup=await kb.start())
+    await callback.message.answer("Menu", reply_markup=await kb.start())
