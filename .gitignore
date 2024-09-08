@@ -2,6 +2,7 @@
 notebooks/*
 app/crawler/data/cookies.py
 app/crawler/data/keys.txt
+app/crawler/data/statistics.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
