@@ -63,6 +63,8 @@ The script automatically scans GitHub every hour for ```.env``` files that may h
 3. For each extracted key, the script calls the OpenAI API to verify whether the key is still valid.
 4. If the key is valid, the script automatically opens an issue on the affected repository, notifying the developer about the exposed key.
 
+If you’re interested in monitoring the results of scanning hundreds of repositories daily, you can easily do so through my [custom-designed Telegram chat bot](https://t.me/save_env_bot). The results not only keep you informed about potential issues but can also serve as a motivating reminder to prioritize security in your own projects.
+
 
 ### 🛑 Disclaimer 🛑
 This tool is designed to help developers protect their sensitive data. It is not intended for malicious use. By using this script, you agree to use it responsibly and within ethical boundaries. Always respect data privacy and security best practices.
