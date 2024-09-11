@@ -77,6 +77,8 @@ This tool is designed to help developers protect their sensitive data. It is not
 * [![VScode](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://code.visualstudio.com/)
 * [![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-A22846?style=for-the-badge&logo=Raspberry%20Pi&logoColor=white)](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
 
+**P.S.** You’re probably wondering why there’s a Raspberry Pi badge here… Well, this entire project is hosted on a home server I built using a Raspberry Pi 4 and a router! Raspberry Pi is one of the areas I’m currently actively exploring, and I love using it to bring creative ideas to life.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
