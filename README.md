@@ -60,15 +60,12 @@ This extension is intended as a supplementary tool for online safety. While it d
 ### Built With
 
 * [![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)](https://www.python.org)
-* [![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)](https://www.javascript.com/)
-* [![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://html.spec.whatwg.org/)
+* [![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white)](https://www.selenium.dev/)
 * [![Jupyter](https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white)](https://jupyterlab.readthedocs.io/en/stable)
 * [![Pandas](https://img.shields.io/badge/Pandas-2C2D72?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
-* [![NumPy](https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
-* [![Tensorflow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=TensorFlow&logoColor=white)](https://www.tensorflow.org)
-* [![Keras](https://img.shields.io/badge/Keras-FF0000?style=for-the-badge&logo=keras&logoColor=white)](https://keras.io/)
 * [![Google Chrome](https://img.shields.io/badge/Google_chrome-4285F4?style=for-the-badge&logo=Google-chrome&logoColor=white)](https://www.google.com/chrome/)
 * [![VScode](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://code.visualstudio.com/)
+* [![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-A22846?style=for-the-badge&logo=Raspberry%20Pi&logoColor=white)](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -142,15 +139,15 @@ Don't forget to give the project a star! Thanks again!
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/cprite/phishing-detection-ext.svg?style=for-the-badge
-[contributors-url]: https://github.com/cprite/phishing-detection-ext/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/cprite/phishing-detection-ext.svg?style=for-the-badge
-[forks-url]: https://github.com/cprite/phishing-detection-ext/network/members
-[stars-shield]: https://img.shields.io/github/stars/cprite/phishing-detection-ext.svg?style=for-the-badge
-[stars-url]: https://github.com/cprite/phishing-detection-ext/stargazers
-[issues-shield]: https://img.shields.io/github/issues/cprite/phishing-detection-ext.svg?style=for-the-badge
-[issues-url]: https://github.com/cprite/phishing-detection-ext/issues
-[license-shield]: https://img.shields.io/github/license/cprite/phishing-detection-ext.svg?style=for-the-badge
-[license-url]: https://github.com/cprite/phishing-detection-ext/blob/master/LICENSE.md
+[contributors-shield]: https://img.shields.io/github/contributors/cprite/save-env.svg?style=for-the-badge
+[contributors-url]: https://github.com/cprite/save-env/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/cprite/save-env.svg?style=for-the-badge
+[forks-url]: https://github.com/cprite/save-env/network/members
+[stars-shield]: https://img.shields.io/github/stars/cprite/save-env.svg?style=for-the-badge
+[stars-url]: https://github.com/cprite/save-env/stargazers
+[issues-shield]: https://img.shields.io/github/issues/cprite/save-env.svg?style=for-the-badge
+[issues-url]: https://github.com/cprite/save-env/issues
+[license-shield]: https://img.shields.io/github/license/cprite/save-env.svg?style=for-the-badge
+[license-url]: https://github.com/cprite/save-env/blob/master/LICENSE.md
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/niknmirosh
