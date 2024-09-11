@@ -20,9 +20,9 @@
     <br />
     <br />
     <br />
-    <a href="https://github.com/cprite/phishing-detection-ext/issues">Report Bug</a>
+    <a href="https://github.com/cprite/save-env/issues">Report Bug</a>
     ·
-    <a href="https://github.com/cprite/phishing-detection-ext/issues">Request Feature</a>
+    <a href="https://github.com/cprite/save-env/issues">Request Feature</a>
   </p>
 </div>
 
@@ -42,7 +42,6 @@
     <li>
       <a href="#getting-started">Getting Started</a>
     </li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
   </ol>
 </details>
@@ -103,37 +102,10 @@ This extension is intended as a supplementary tool for online safety. While it d
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] **Create Demo Version**
-  - Description: Developed a demo version of the extension for initial testing and feedback.
-     
-- [ ] **Self-Learning Capabilities**
-  - Description: Implementation of a self-learning mechanism to improve the accuracy of the prediction model based on user reports.
-
-- [ ] **Deployment on Cloud**
-  - Description: Plan to deploy the backend services of the extension to a cloud platform for enhanced speed, reliability and scalability.
-
-- [ ] **Deployment on Chrome Web Store**
-  - Description: Prepare and submit the extension to the Chrome Web Store for public availability and easy installation by users.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+I'm open to collaboration and contributions from fellow developers! You can easily adapt the code to work with other APIs beyond OpenAI. Feel free to fork the project and modify it to suit your needs. Together, we can enhance this tool and help more developers safeguard their projects.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
