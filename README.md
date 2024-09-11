@@ -51,7 +51,17 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-**No Phishing** is an advanced browser extension using artificial intelligence to detect phishing threats with 91% accuracy in real time and provides instant notifications about potential phishing threats. It's very easy to install and operate, providing a seamless browsing experience. It's designed for Google Chrome to enhance online security for both individuals and businesses.
+In the world of software development, API keys and other sensitive credentials are the keys to accessing critical services and applications. Unfortunately, these keys are sometimes accidentally exposed in public repositories, putting both developers and organizations at risk. If left unprotected, malicious actors can exploit these exposed credentials to access and misuse valuable data, leading to breaches, financial losses, and damaged reputations.
+
+**SaveEnv** was created to address this growing problem by automating the process of detecting and notifying developers about exposed OpenAI API keys in ```.env``` files. By continuously monitoring public GitHub repositories, SaveEnv helps prevent sensitive data from falling into the wrong hands. The project's aim is to provide an easy-to-use tool that alerts developers to their mistakes before they can be exploited.
+
+The script automatically scans GitHub every hour for ```.env``` files that may have OpenAI API keys. Here’s how the process works:
+
+1. The script searches for public repositories with .env files that may contain sensitive data.
+2. It identifies OpenAI API keys within these .env files.
+3. For each extracted key, the script calls the OpenAI API to verify whether the key is still valid.
+4. If the key is valid, the script automatically opens an issue on the affected repository, notifying the developer about the exposed key.
+
 
 ### 🛑 Disclaimer 🛑
 This tool is designed to help developers protect their sensitive data. It is not intended for malicious use. By using this script, you agree to use it responsibly and within ethical boundaries. Always respect data privacy and security best practices.
@@ -68,39 +78,6 @@ This tool is designed to help developers protect their sensitive data. It is not
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/cprite/phishing-detection-ext.git
-   ```
-2. Install the required dependencies
-   ```sh
-   pip install -r requirements.txt
-   ```
-3. Load the extension in Google Chrome
-   - Open Google Chrome and navigate to `chrome://extensions/`.
-   - Enable `Developer mode` by toggling the switch in the top-right corner.
-   - Click on `Load unpacked` button.
-   - Navigate to the directory where you cloned the `phishing-detection-ext` repository and select it.
-   - The extension should now appear in your list of installed extensions.
-4. Activate the extension
-   - Once installed, you'll see the extension's icon in the Chrome toolbar.
-   - Click on the icon to turn ON the extension.
-   - Before using the extension, start the local server by navigating to the project's root directory in the command line:
-     ```sh
-     cd path/to/repo/phishing-detection-ext
-     python main.py
-5. Ready to Go!
-   - You are now all set to surf the internet safely with the "No Phishing" extension.
-   - The extension will run in the background, monitoring websites you visit for potential phishing threats.
-   - Stay safe and feel free to report any suspicious sites or activities you encounter.
-   - Remember, your web safety is enhanced, but always stay vigilant while browsing.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 ## Contributing
