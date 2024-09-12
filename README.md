@@ -94,7 +94,7 @@ I'm open to collaboration and contributions from fellow developers! You can easi
 ## Donations
 
 If you've found **SaveEnv** helpful and feel inclined to support its creator, your donations would be warmly welcomed. Currently I'm on a active journey of growth and exploration in the world of IT, and any contributions will help fuel new learning experiences, creative projects, and continuous innovation. While there’s no expectation, any support will go towards sustaining my student life and further expanding my knowledge and skills. Thank you for your thoughtfulness!
-* [![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](buymeacoffee.com/cprite)
+* [![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/cprite)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
