@@ -20,9 +20,9 @@
     <br />
     <br />
     <br />
-    <a href="https://github.com/cprite/phishing-detection-ext/issues">Report Bug</a>
+    <a href="https://github.com/cprite/save-env/issues">Report Bug</a>
     ·
-    <a href="https://github.com/cprite/phishing-detection-ext/issues">Request Feature</a>
+    <a href="https://github.com/cprite/save-env/issues">Request Feature</a>
   </p>
 </div>
 
@@ -40,10 +40,10 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#contributing">Contributing</a>
     </li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#donations">Donations</a>
+    </li>
   </ol>
 </details>
 
@@ -52,74 +52,34 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-**No Phishing** is an advanced browser extension using artificial intelligence to detect phishing threats with 91% accuracy in real time and provides instant notifications about potential phishing threats. It's very easy to install and operate, providing a seamless browsing experience. It's designed for Google Chrome to enhance online security for both individuals and businesses.
+In the world of software development, API keys and other sensitive credentials are the keys to accessing critical services and applications. Unfortunately, these keys are sometimes accidentally exposed in public repositories, putting both developers and organizations at risk. If left unprotected, malicious actors can exploit these exposed credentials to access and misuse valuable data, leading to breaches, financial losses, and damaged reputations.
 
-### Disclaimer
-This extension is intended as a supplementary tool for online safety. While it demonstrates high accuracy, it is not infallible. As the developer, I am not a certified cybersecurity professional, and the extension could make errors. Users are advised to exercise caution and judgment. By using "No Phishing," you acknowledge and accept responsibility for your online safety.
+**SaveEnv** was created to address this growing problem by automating the process of detecting and notifying developers about exposed OpenAI API keys in ```.env``` files. By continuously monitoring public GitHub repositories, SaveEnv helps prevent sensitive data from falling into the wrong hands. The project's aim is to provide an easy-to-use tool that alerts developers to their mistakes before they can be exploited.
+
+The script automatically scans GitHub every hour for ```.env``` files that may have OpenAI API keys. Here’s how the process works:
+
+1. The script searches for public repositories with .env files that may contain sensitive data.
+2. It identifies OpenAI API keys within these .env files.
+3. For each extracted key, the script calls the OpenAI API to verify whether the key is still valid.
+4. If the key is valid, the script automatically opens an issue on the affected repository, notifying the developer about the exposed key.
+
+If you’re interested in monitoring the results of scanning hundreds of repositories daily, you can easily do so through my [custom-designed Telegram chat bot](https://t.me/save_env_bot). The results not only keep you informed about potential issues but can also serve as a motivating reminder to prioritize security in your own projects.
+
+
+### 🛑 Disclaimer 🛑
+This tool is designed to help developers protect their sensitive data. It is not intended for malicious use. By using this script, you agree to use it responsibly and within ethical boundaries. Always respect data privacy and security best practices.
 
 ### Built With
 
 * [![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)](https://www.python.org)
-* [![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)](https://www.javascript.com/)
-* [![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://html.spec.whatwg.org/)
+* [![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white)](https://www.selenium.dev/)
 * [![Jupyter](https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white)](https://jupyterlab.readthedocs.io/en/stable)
 * [![Pandas](https://img.shields.io/badge/Pandas-2C2D72?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
-* [![NumPy](https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
-* [![Tensorflow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=TensorFlow&logoColor=white)](https://www.tensorflow.org)
-* [![Keras](https://img.shields.io/badge/Keras-FF0000?style=for-the-badge&logo=keras&logoColor=white)](https://keras.io/)
 * [![Google Chrome](https://img.shields.io/badge/Google_chrome-4285F4?style=for-the-badge&logo=Google-chrome&logoColor=white)](https://www.google.com/chrome/)
 * [![VScode](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://code.visualstudio.com/)
+* [![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-A22846?style=for-the-badge&logo=Raspberry%20Pi&logoColor=white)](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/cprite/phishing-detection-ext.git
-   ```
-2. Install the required dependencies
-   ```sh
-   pip install -r requirements.txt
-   ```
-3. Load the extension in Google Chrome
-   - Open Google Chrome and navigate to `chrome://extensions/`.
-   - Enable `Developer mode` by toggling the switch in the top-right corner.
-   - Click on `Load unpacked` button.
-   - Navigate to the directory where you cloned the `phishing-detection-ext` repository and select it.
-   - The extension should now appear in your list of installed extensions.
-4. Activate the extension
-   - Once installed, you'll see the extension's icon in the Chrome toolbar.
-   - Click on the icon to turn ON the extension.
-   - Before using the extension, start the local server by navigating to the project's root directory in the command line:
-     ```sh
-     cd path/to/repo/phishing-detection-ext
-     python main.py
-5. Ready to Go!
-   - You are now all set to surf the internet safely with the "No Phishing" extension.
-   - The extension will run in the background, monitoring websites you visit for potential phishing threats.
-   - Stay safe and feel free to report any suspicious sites or activities you encounter.
-   - Remember, your web safety is enhanced, but always stay vigilant while browsing.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] **Create Demo Version**
-  - Description: Developed a demo version of the extension for initial testing and feedback.
-     
-- [ ] **Self-Learning Capabilities**
-  - Description: Implementation of a self-learning mechanism to improve the accuracy of the prediction model based on user reports.
-
-- [ ] **Deployment on Cloud**
-  - Description: Plan to deploy the backend services of the extension to a cloud platform for enhanced speed, reliability and scalability.
-
-- [ ] **Deployment on Chrome Web Store**
-  - Description: Prepare and submit the extension to the Chrome Web Store for public availability and easy installation by users.
+**P.S.** You’re probably wondering why there’s a Raspberry Pi badge here… Well, this entire project is hosted on a home server I built using a Raspberry Pi 4 and a router! Raspberry Pi is one of the areas I’m currently actively exploring, and I love using it to bring creative ideas to life.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -127,30 +87,28 @@ This extension is intended as a supplementary tool for online safety. While it d
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+I'm open to collaboration and contributions from fellow developers! You can easily adapt the code to work with other APIs beyond OpenAI. Feel free to fork the project and modify it to suit your needs. Together, we can enhance this tool and help more developers safeguard their projects.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+<!-- DONATIONS -->
+## Donations
+
+If you've found **SaveEnv** helpful and feel inclined to support its creator, your donations would be warmly welcomed. Currently I'm on a active journey of growth and exploration in the world of IT, and any contributions will help fuel new learning experiences, creative projects, and continuous innovation. While there’s no expectation, any support will go towards sustaining my student life and further expanding my knowledge and skills. Thank you for your thoughtfulness!
+* [![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](buymeacoffee.com/cprite)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/cprite/phishing-detection-ext.svg?style=for-the-badge
-[contributors-url]: https://github.com/cprite/phishing-detection-ext/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/cprite/phishing-detection-ext.svg?style=for-the-badge
-[forks-url]: https://github.com/cprite/phishing-detection-ext/network/members
-[stars-shield]: https://img.shields.io/github/stars/cprite/phishing-detection-ext.svg?style=for-the-badge
-[stars-url]: https://github.com/cprite/phishing-detection-ext/stargazers
-[issues-shield]: https://img.shields.io/github/issues/cprite/phishing-detection-ext.svg?style=for-the-badge
-[issues-url]: https://github.com/cprite/phishing-detection-ext/issues
-[license-shield]: https://img.shields.io/github/license/cprite/phishing-detection-ext.svg?style=for-the-badge
-[license-url]: https://github.com/cprite/phishing-detection-ext/blob/master/LICENSE.md
+[contributors-shield]: https://img.shields.io/github/contributors/cprite/save-env.svg?style=for-the-badge
+[contributors-url]: https://github.com/cprite/save-env/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/cprite/save-env.svg?style=for-the-badge
+[forks-url]: https://github.com/cprite/save-env/network/members
+[stars-shield]: https://img.shields.io/github/stars/cprite/save-env.svg?style=for-the-badge
+[stars-url]: https://github.com/cprite/save-env/stargazers
+[issues-shield]: https://img.shields.io/github/issues/cprite/save-env.svg?style=for-the-badge
+[issues-url]: https://github.com/cprite/save-env/issues
+[license-shield]: https://img.shields.io/github/license/cprite/save-env.svg?style=for-the-badge
+[license-url]: https://github.com/cprite/save-env/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/niknmirosh
