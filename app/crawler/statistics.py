@@ -1,4 +1,4 @@
-import pandas as pd
+import csv
 import os
 
 
@@ -8,19 +8,49 @@ GET STAT ON TOTAL AND LAST SCANNING
 
 """
 
-def get_stat():
-    data = pd.read_csv(os.path.join("app/crawler/data", "statistics.csv"))
 
-    return str(data['ScanTime'][0]), str(data['TotalFound'][0]), str(data['LastFound'][0]), str(data['TotalCompromised'][0]), str(data['LastCompromised'][0])
+DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
+STATS_PATH = os.path.join(DATA_DIR, "statistics.csv")
+
+FIELDS = ["ScanTime", "TotalFound", "LastFound", "TotalCompromised", "LastCompromised"]
+
+DEFAULT_STAT = {
+    "ScanTime": "never",
+    "TotalFound": 0,
+    "LastFound": 0,
+    "TotalCompromised": 0,
+    "LastCompromised": 0,
+}
+
+
+def get_stat():
+    row = DEFAULT_STAT
+
+    if os.path.exists(STATS_PATH):
+        with open(STATS_PATH, newline="") as file:
+            rows = list(csv.DictReader(file))
+            if rows:
+                row = rows[0]
+
+    return (
+        str(row["ScanTime"]),
+        str(row["TotalFound"]),
+        str(row["LastFound"]),
+        str(row["TotalCompromised"]),
+        str(row["LastCompromised"]),
+    )
 
 
 def update_stat(scan_time, total_found, last_found, total_compromised, last_compromised):
-    data = pd.read_csv(os.path.join("app/crawler/data", "statistics.csv"))
+    os.makedirs(DATA_DIR, exist_ok=True)
 
-    data['ScanTime'] = scan_time
-    data['TotalFound'] = total_found
-    data['LastFound'] = last_found
-    data['TotalCompromised'] = total_compromised
-    data['LastCompromised'] = last_compromised
-
-    data.to_csv(os.path.join("app/crawler/data", "statistics.csv"), index=False)
+    with open(STATS_PATH, "w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=FIELDS)
+        writer.writeheader()
+        writer.writerow({
+            "ScanTime": scan_time,
+            "TotalFound": total_found,
+            "LastFound": last_found,
+            "TotalCompromised": total_compromised,
+            "LastCompromised": last_compromised,
+        })

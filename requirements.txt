@@ -1,7 +1,4 @@
-aiogram
-python-dotenv
 openai
 selenium
 webdriver-manager
 beautifulsoup4
-pandas

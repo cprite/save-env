@@ -40,10 +40,14 @@
       </ul>
     </li>
     <li>
-      <a href="#contributing">Contributing</a>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#github-cookies">GitHub Cookies</a></li>
+      </ul>
     </li>
-    <li><a href="#donations">Donations</a>
-    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contributing">Contributing</a></li>
   </ol>
 </details>
 
@@ -54,16 +58,16 @@
 
 In the world of software development, API keys and other sensitive credentials are the keys to accessing critical services and applications. Unfortunately, these keys are sometimes accidentally exposed in public repositories, putting both developers and organizations at risk. If left unprotected, malicious actors can exploit these exposed credentials to access and misuse valuable data, leading to breaches, financial losses, and damaged reputations.
 
-**SaveEnv** was created to address this growing problem by automating the process of detecting and notifying developers about exposed OpenAI API keys in ```.env``` files. By continuously monitoring public GitHub repositories, SaveEnv helps prevent sensitive data from falling into the wrong hands. The project's aim is to provide an easy-to-use tool that alerts developers to their mistakes before they can be exploited.
+**SaveEnv** was created to address this growing problem by automating the process of detecting and notifying developers about exposed OpenAI API keys in ```.env``` files. By monitoring public GitHub repositories, SaveEnv helps prevent sensitive data from falling into the wrong hands. The project's aim is to provide an easy-to-use tool that alerts developers to their mistakes before they can be exploited.
 
-The script automatically scans GitHub every hour for ```.env``` files that may have OpenAI API keys. Here’s how the process works:
+SaveEnv is a **command-line tool**. Here’s how a scan works:
 
-1. The script searches for public repositories with .env files that may contain sensitive data.
-2. It identifies OpenAI API keys within these .env files.
-3. For each extracted key, the script calls the OpenAI API to verify whether the key is still valid.
-4. If the key is valid, the script automatically opens an issue on the affected repository, notifying the developer about the exposed key.
+1. It searches public GitHub repositories for `.env` files that may contain OpenAI API keys.
+2. It extracts the candidate keys from those files.
+3. For each extracted key, it calls the OpenAI API to verify whether the key is still valid.
+4. If the key is valid, it opens an issue on the affected repository to notify the developer about the exposed key.
 
-If you’re interested in monitoring the results of scanning hundreds of repositories daily, you can easily do so through my [custom-designed Telegram chat bot](https://t.me/save_env_bot) (currently off, will get it back soon). The results not only keep you informed about potential issues but can also serve as a motivating reminder to prioritize security in your own projects.
+Statistics from each run (keys checked, compromised keys, last scan time) are stored locally and can be printed at any time with `python run.py stats`.
 
 
 ### 🛑 Disclaimer 🛑
@@ -73,13 +77,81 @@ This tool is designed to help developers protect their sensitive data. It is not
 
 * [![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)](https://www.python.org)
 * [![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=Selenium&logoColor=white)](https://www.selenium.dev/)
-* [![Jupyter](https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white)](https://jupyterlab.readthedocs.io/en/stable)
-* [![Pandas](https://img.shields.io/badge/Pandas-2C2D72?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
 * [![Google Chrome](https://img.shields.io/badge/Google_chrome-4285F4?style=for-the-badge&logo=Google-chrome&logoColor=white)](https://www.google.com/chrome/)
-* [![VScode](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://code.visualstudio.com/)
-* [![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-A22846?style=for-the-badge&logo=Raspberry%20Pi&logoColor=white)](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
 
-**P.S.** You’re probably wondering why there’s a Raspberry Pi badge here… Well, this entire project is hosted on a home server I built using a Raspberry Pi 4 and a router! Raspberry Pi is one of the areas I’m currently actively exploring, and I love using it to bring creative ideas to life.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/cprite/save-env.git
+   cd save-env
+   ```
+2. (Optional) create a virtual environment:
+   ```sh
+   python -m venv venv
+   source venv/bin/activate
+   ```
+3. Install the dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
+   Google Chrome must be installed — Selenium drives it in headless mode. The
+   matching ChromeDriver is downloaded automatically on first run.
+
+### GitHub Cookies
+
+GitHub code search requires an authenticated session. Copy the example file and
+fill in the cookies from a logged-in GitHub session in your browser
+(DevTools → Application → Cookies):
+
+```sh
+cp app/crawler/data/cookies.example.py app/crawler/data/cookies.py
+```
+
+`cookies.py` is git-ignored — never commit your real session cookies.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- USAGE -->
+## Usage
+
+Run a single scan and print the results:
+
+```sh
+python run.py scan
+```
+
+Keep scanning on a schedule (e.g. every hour) until interrupted with `Ctrl+C`:
+
+```sh
+python run.py scan --interval 3600
+```
+
+Print the statistics from the last scan without scanning again:
+
+```sh
+python run.py stats
+```
+
+Add `-v` / `--verbose` to any command for debug logging:
+
+```sh
+python run.py -v scan
+```
+
+Full help:
+
+```sh
+python run.py --help
+python run.py scan --help
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

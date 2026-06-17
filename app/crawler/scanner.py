@@ -122,8 +122,6 @@ def start_scan():
                                     send_warning(driver, env_num)
 
                                     last_comp += 1
-                                    #
-                                    pass
 
 
             else:
